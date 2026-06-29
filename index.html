@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>داشبورد قیمت</title>
+<style>
+  @font-face{
+    font-family: 'VazirMatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-matn-font@v27.2.2/dist/Vazir-Matn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face{
+    font-family: 'VazirMatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-matn-font@v27.2.2/dist/Vazir-Matn-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+  @font-face{
+    font-family: 'VazirMatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-matn-font@v27.2.2/dist/Vazir-Matn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face{
+    font-family: 'VazirMatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-matn-font@v27.2.2/dist/Vazir-Matn-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+  }
+  :root{
+    --bar-bg: #ffffff;
+    --icon-color: #9a9aa1;
+    --text-color: #8b8b92;
+    --page-bg: #ededee;
+    --up-color: #1faa59;
+    --down-color: #e0473f;
+    --card-bg: #ffffff;
+    --title-color: #1c1c1e;
+  }
+
+  *{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button{
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:focus,
+  button:focus-visible{
+    outline: none;
+  }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: var(--page-bg);
+    font-family: 'VazirMatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  }
+
+  body{
+    position: relative;
+  }
+
+  /* ===== Top search bar ===== */
+  .top-wrapper{
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top, 24px));
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 0 20px;
+  }
+
+  .search-bar{
+    width: 54%;
+    min-width: 200px;
+    max-width: 360px;
+    height: 48px;
+    background: var(--bar-bg);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 8px 20px rgba(0,0,0,0.07),
+      0 2px 6px rgba(0,0,0,0.04);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: text;
+  }
+
+  .search-bar:active,
+  .search-bar.focused{
+    transform: scale(0.99);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.05),
+      0 10px 24px rgba(0,0,0,0.10),
+      0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .search-icon{
+    flex: 0 0 auto;
+    width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color);
+  }
+
+  .search-icon svg{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .search-input{
+    flex: 1 1 auto;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3c3c43;
+    caret-color: #3c3c43;
+    width: 100%;
+    height: 100%;
+    direction: rtl;
+    text-align: right;
+    font-family: 'VazirMatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  }
+
+  .search-input::placeholder{
+    color: var(--text-color);
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  @media (min-width: 768px){
+    .search-bar{
+      height: 52px;
+      border-radius: 26px;
+      padding: 0 22px;
+      max-width: 420px;
+    }
+    .search-input{ font-size: 17px; }
+    .search-icon{ width: 21px; height: 21px; }
+  }
+
+  @media (min-width: 1200px){
+    .top-wrapper{ top: 40px; }
+    .search-bar{ max-width: 440px; }
+  }
+
+  @media (max-width: 380px){
+    .search-bar{
+      height: 46px;
+      padding: 0 16px;
+      gap: 8px;
+      width: 52%;
+    }
+    .search-input{ font-size: 15px; }
+  }
+
+  /* ===== Page content / price grid ===== */
+  .page{
+    padding-top: 100px;
+    padding-bottom: 48px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media (min-width: 1200px){
+    .page{ padding-top: 120px; }
+  }
+
+  .section-label{
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 18px 4px 10px;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (min-width: 560px){
+    .grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .card{
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 14px 14px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.03),
+      0 4px 14px rgba(0,0,0,0.05);
+    transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 84px;
+  }
+
+  .card.hidden{
+    display: none;
+  }
+
+  .card-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .card-name{
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--title-color);
+    line-height: 1.3;
+  }
+
+  .card-badge{
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-up{
+    color: var(--up-color);
+    background: rgba(31,170,89,0.1);
+  }
+
+  .badge-down{
+    color: var(--down-color);
+    background: rgba(224,71,63,0.1);
+  }
+
+  .badge-flat{
+    color: var(--text-color);
+    background: rgba(138,138,142,0.1);
+  }
+
+  .card-price{
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--title-color);
+    letter-spacing: -0.01em;
+    direction: ltr;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  .card-unit{
+    font-size: 11px;
+    color: var(--text-color);
+    font-weight: 600;
+  }
+
+  .empty-state{
+    text-align: center;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 40px 10px;
+  }
+
+  .status-bar{
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-color);
+    font-weight: 600;
+    margin: 4px 0 4px;
+  }
+
+  .status-dot{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #cfcfd2;
+    margin-left: 6px;
+    transition: background 0.3s ease;
+  }
+
+  .status-dot.live{
+    background: var(--up-color);
+    box-shadow: 0 0 0 0 rgba(31,170,89,0.5);
+    animation: pulse 1.6s infinite;
+  }
+
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(31,170,89,0.4); }
+    70%{ box-shadow: 0 0 0 6px rgba(31,170,89,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(31,170,89,0); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-wrapper">
+    <div class="search-bar" id="searchBar">
+      <div class="search-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.2"/>
+          <line x1="16.4" y1="16.4" x2="21" y2="21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="جست‌وجو"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="status-bar" id="statusBar">در حال اتصال<span class="status-dot" id="statusDot"></span></div>
+    <div id="priceGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">موردی یافت نشد</div>
+  </div>
+
+<script>
+(function(){
+
+  // ====== تنظیمات ======
+  // این کلید مربوط به سرویس «نوسان» (navasan.tech) است، نه BrsApi.
+  // توجه مهم: نسخه رایگان نوسان فقط تا ۱۲۰ درخواست در «کل ماه» مجاز است،
+  // پس فاصله بروزرسانی عمداً طولانی نگه داشته شده تا سهمیه زود تمام نشود.
+  const API_KEY = "freeOVcUxPkOdrCzqfhPWBceNLS9Psq3";
+  const NAVASAN_URL = "https://api.navasan.tech/latest/?api_key=" + API_KEY;
+  // سرور نوسان هدر CORS لازم برای فراخوانی مستقیم از مرورگر را ارسال نمی‌کند، پس
+  // باید از یک پروکسی CORS رد شویم. چون ممکن است یک پروکسی خاص از روی شبکه/اپراتور
+  // فعلی در دسترس نباشد (فیلترینگ، قطعی موقت و ...)، چند پروکسی را به‌ترتیب امتحان
+  // می‌کنیم: هرکدام که از این شبکه در دسترس باشد همان استفاده می‌شود.
+  const CORS_PROXIES = [
+    function(u){ return "https://api.allorigins.win/raw?url=" + encodeURIComponent(u); },
+    function(u){ return "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u); },
+    function(u){ return "https://corsproxy.io/?url=" + encodeURIComponent(u); }
+  ];
+  const REFRESH_INTERVAL_MS = 10 * 60 * 1000; // هر ۱۰ دقیقه (به‌خاطر سهمیه محدود ۱۲۰ درخواست در ماه)
+  const PROXY_TIMEOUT_MS = 8000; // اگر یک پروکسی در ۸ ثانیه جواب نداد، سراغ بعدی می‌رویم
+
+  // لیست نمادهایی که نمایش داده می‌شوند، به ترتیب نمایش.
+  // "keys" آرایه‌ای از کلیدهای احتمالی در پاسخ Api نوسان است؛ اولین کلیدی که
+  // در پاسخ موجود باشد استفاده می‌شود (پاسخ نوسان یک آبجکت تخت کلید/مقدار است،
+  // نه آرایه — بر خلاف ساختار قبلی که برای سرویس دیگری نوشته شده بود).
+  // بخش‌بندی آیتم‌ها: هر آیتم می‌تواند یک سرتیتر بخش باشد (section: true)
+  const WATCHLIST = [
+    // ===== ارزهای فیات =====
+    { id: "_sec_forex", section: true, label: "ارزهای خارجی" },
+    { id: "usd",       label: "دلار آمریکا",         unit: "تومان",  keys: ["usd"] },
+    { id: "eur",       label: "یورو",                unit: "تومان",  keys: ["eur"] },
+    { id: "gbp",       label: "پوند انگلیس",         unit: "تومان",  keys: ["gbp"] },
+    { id: "aed",       label: "درهم امارات",         unit: "تومان",  keys: ["aed"] },
+    { id: "try",       label: "لیر ترکیه",           unit: "تومان",  keys: ["try"] },
+    { id: "cny",       label: "یوان چین",            unit: "تومان",  keys: ["cny"] },
+    { id: "jpy",       label: "ین ژاپن",             unit: "تومان",  keys: ["jpy"] },
+    { id: "cad",       label: "دلار کانادا",         unit: "تومان",  keys: ["cad"] },
+    { id: "aud",       label: "دلار استرالیا",       unit: "تومان",  keys: ["aud"] },
+    { id: "chf",       label: "فرانک سوئیس",         unit: "تومان",  keys: ["chf"] },
+    { id: "sar",       label: "ریال عربستان",        unit: "تومان",  keys: ["sar"] },
+    { id: "rub",       label: "روبل روسیه",          unit: "تومان",  keys: ["rub"] },
+    { id: "inr",       label: "روپیه هند",           unit: "تومان",  keys: ["inr"] },
+    { id: "afn",       label: "افغانی",              unit: "تومان",  keys: ["afn"] },
+    { id: "iqd",       label: "دینار عراق",          unit: "تومان",  keys: ["iqd"] },
+    { id: "syp",       label: "لیره سوریه",          unit: "تومان",  keys: ["syp"] },
+    { id: "kwd",       label: "دینار کویت",          unit: "تومان",  keys: ["kwd"] },
+    { id: "bhd",       label: "دینار بحرین",         unit: "تومان",  keys: ["bhd"] },
+    { id: "omr",       label: "ریال عمان",           unit: "تومان",  keys: ["omr"] },
+    { id: "qar",       label: "ریال قطر",            unit: "تومان",  keys: ["qar"] },
+    { id: "hkd",       label: "دلار هنگ‌کنگ",       unit: "تومان",  keys: ["hkd"] },
+    { id: "sgd",       label: "دلار سنگاپور",        unit: "تومان",  keys: ["sgd"] },
+    { id: "nzd",       label: "دلار نیوزیلند",       unit: "تومان",  keys: ["nzd"] },
+    { id: "sek",       label: "کرون سوئد",           unit: "تومان",  keys: ["sek"] },
+    { id: "nok",       label: "کرون نروژ",           unit: "تومان",  keys: ["nok"] },
+    { id: "dkk",       label: "کرون دانمارک",        unit: "تومان",  keys: ["dkk"] },
+    { id: "myr",       label: "رینگیت مالزی",        unit: "تومان",  keys: ["myr"] },
+    { id: "krw",       label: "وون کره جنوبی",       unit: "تومان",  keys: ["krw"] },
+    { id: "thb",       label: "بات تایلند",          unit: "تومان",  keys: ["thb"] },
+    { id: "pln",       label: "زلوتی لهستان",        unit: "تومان",  keys: ["pln"] },
+    { id: "czk",       label: "کرون چک",             unit: "تومان",  keys: ["czk"] },
+    { id: "huf",       label: "فورینت مجارستان",     unit: "تومان",  keys: ["huf"] },
+    { id: "brl",       label: "رئال برزیل",          unit: "تومان",  keys: ["brl"] },
+    { id: "mxn",       label: "پزو مکزیک",           unit: "تومان",  keys: ["mxn"] },
+    { id: "zar",       label: "رند آفریقای جنوبی",   unit: "تومان",  keys: ["zar"] },
+    { id: "pkr",       label: "روپیه پاکستان",       unit: "تومان",  keys: ["pkr"] },
+    { id: "idr",       label: "روپیه اندونزی",       unit: "تومان",  keys: ["idr"] },
+
+    // ===== طلا و سکه =====
+    { id: "_sec_gold", section: true, label: "طلا و سکه" },
+    { id: "g18",       label: "طلای ۱۸ عیار",        unit: "هر گرم", keys: ["18ayar"] },
+    { id: "g24",       label: "طلای ۲۴ عیار",        unit: "هر گرم", keys: ["24ayar"] },
+    { id: "abshodeh",  label: "طلای آبشده",          unit: "هر گرم", keys: ["abshodeh"] },
+    { id: "xau",       label: "اونس طلا",             unit: "تومان",  keys: ["xau"] },
+    { id: "xag",       label: "اونس نقره",            unit: "تومان",  keys: ["xag"] },
+    { id: "sekkeh",    label: "سکه امامی",           unit: "هر عدد", keys: ["sekkeh"] },
+    { id: "bahar",     label: "سکه تمام بهار",       unit: "هر عدد", keys: ["bahar"] },
+    { id: "nim",       label: "نیم سکه",              unit: "هر عدد", keys: ["nim"] },
+    { id: "rob",       label: "ربع سکه",              unit: "هر عدد", keys: ["rob"] },
+    { id: "gerami",    label: "سکه گرمی",            unit: "هر عدد", keys: ["gerami"] },
+    { id: "mithqal",   label: "مثقال طلا",           unit: "تومان",  keys: ["mithqal"] },
+
+    // ===== رمزارزها =====
+    { id: "_sec_crypto", section: true, label: "رمزارزها" },
+    { id: "btc",       label: "بیت‌کوین",            unit: "تومان",  keys: ["btc"] },
+    { id: "eth",       label: "اتریوم",              unit: "تومان",  keys: ["eth"] },
+    { id: "usdt",      label: "تتر (USDT)",          unit: "تومان",  keys: ["usdt"] },
+    { id: "usdc",      label: "یو‌اس‌دی کوین",      unit: "تومان",  keys: ["usdc"] },
+    { id: "bnb",       label: "بایننس کوین",         unit: "تومان",  keys: ["bnb"] },
+    { id: "xrp",       label: "ریپل",                unit: "تومان",  keys: ["xrp"] },
+    { id: "sol",       label: "سولانا",              unit: "تومان",  keys: ["sol"] },
+    { id: "ada",       label: "کاردانو",             unit: "تومان",  keys: ["ada"] },
+    { id: "doge",      label: "دوج‌کوین",            unit: "تومان",  keys: ["doge"] },
+    { id: "trx",       label: "ترون",                unit: "تومان",  keys: ["trx"] },
+    { id: "dot",       label: "پولکادات",            unit: "تومان",  keys: ["dot"] },
+    { id: "matic",     label: "پالیگان",             unit: "تومان",  keys: ["matic","pol"] },
+    { id: "shib",      label: "شیبا اینو",           unit: "تومان",  keys: ["shib"] },
+    { id: "ltc",       label: "لایت‌کوین",           unit: "تومان",  keys: ["ltc"] },
+    { id: "avax",      label: "اولانچ",              unit: "تومان",  keys: ["avax"] },
+    { id: "link",      label: "چین‌لینک",            unit: "تومان",  keys: ["link"] },
+    { id: "uni",       label: "یونی‌سواپ",           unit: "تومان",  keys: ["uni"] },
+    { id: "atom",      label: "کاسموس",              unit: "تومان",  keys: ["atom"] },
+    { id: "etc",       label: "اتریوم کلاسیک",       unit: "تومان",  keys: ["etc"] },
+    { id: "xlm",       label: "استلار",              unit: "تومان",  keys: ["xlm"] },
+    { id: "bch",       label: "بیت‌کوین کش",         unit: "تومان",  keys: ["bch"] },
+    { id: "algo",      label: "الگوراند",            unit: "تومان",  keys: ["algo"] },
+    { id: "vet",       label: "وی‌چین",              unit: "تومان",  keys: ["vet"] },
+    { id: "icp",       label: "اینترنت کامپیوتر",   unit: "تومان",  keys: ["icp"] },
+    { id: "fil",       label: "فایل‌کوین",           unit: "تومان",  keys: ["fil"] },
+    { id: "hbar",      label: "هدراهش‌گراف",         unit: "تومان",  keys: ["hbar"] },
+    { id: "egld",      label: "مولتی‌ورس‌ایکس",     unit: "تومان",  keys: ["egld"] },
+    { id: "sand",      label: "سند‌باکس",            unit: "تومان",  keys: ["sand"] },
+    { id: "mana",      label: "دسنترالند",           unit: "تومان",  keys: ["mana"] },
+    { id: "axs",       label: "اکسی اینفینیتی",     unit: "تومان",  keys: ["axs"] },
+    { id: "theta",     label: "تتا",                 unit: "تومان",  keys: ["theta"] },
+    { id: "xtz",       label: "تزوس",                unit: "تومان",  keys: ["xtz"] },
+    { id: "neo",       label: "نئو",                 unit: "تومان",  keys: ["neo"] },
+    { id: "eos",       label: "ای‌اواس",             unit: "تومان",  keys: ["eos"] },
+    { id: "aave",      label: "آوه",                 unit: "تومان",  keys: ["aave"] },
+    { id: "mkr",       label: "میکر",                unit: "تومان",  keys: ["mkr"] },
+    { id: "comp",      label: "کامپاند",             unit: "تومان",  keys: ["comp"] },
+    { id: "crv",       label: "کرو فایننس",          unit: "تومان",  keys: ["crv"] },
+    { id: "snx",       label: "سینتتیکس",           unit: "تومان",  keys: ["snx"] },
+    { id: "grt",       label: "گراف",                unit: "تومان",  keys: ["grt"] },
+    { id: "sushi",     label: "سوشی‌سواپ",           unit: "تومان",  keys: ["sushi"] },
+    { id: "zec",       label: "زی‌کش",               unit: "تومان",  keys: ["zec"] },
+    { id: "dash",      label: "دش",                  unit: "تومان",  keys: ["dash"] },
+    { id: "bat",       label: "بیسیک اتنشن توکن",   unit: "تومان",  keys: ["bat"] },
+    { id: "enj",       label: "انجین کوین",          unit: "تومان",  keys: ["enj"] },
+    { id: "chz",       label: "چیلیز",               unit: "تومان",  keys: ["chz"] },
+    { id: "hot",       label: "هولو",                unit: "تومان",  keys: ["hot"] },
+    { id: "xem",       label: "نم",                  unit: "تومان",  keys: ["xem"] },
+    { id: "zil",       label: "زیلیقا",              unit: "تومان",  keys: ["zil"] },
+    { id: "waves",     label: "ویوز",                unit: "تومان",  keys: ["waves"] },
+    { id: "ont",       label: "انتالوژی",            unit: "تومان",  keys: ["ont"] },
+    { id: "qtum",      label: "کوانتوم",             unit: "تومان",  keys: ["qtum"] },
+    { id: "icx",       label: "آیکون",               unit: "تومان",  keys: ["icx"] },
+    { id: "lrc",       label: "لوپرینگ",             unit: "تومان",  keys: ["lrc"] },
+    { id: "near",      label: "نیر پروتکل",          unit: "تومان",  keys: ["near"] },
+    { id: "ftm",       label: "فانتوم",              unit: "تومان",  keys: ["ftm"] },
+    { id: "one",       label: "هارمونی",             unit: "تومان",  keys: ["one"] },
+    { id: "celo",      label: "سلو",                 unit: "تومان",  keys: ["celo"] },
+    { id: "flow",      label: "فلو",                 unit: "تومان",  keys: ["flow"] },
+    { id: "ar",        label: "آروی‌ایو",            unit: "تومان",  keys: ["ar"] },
+    { id: "kava",      label: "کاوا",                unit: "تومان",  keys: ["kava"] },
+    { id: "ksm",       label: "کوساما",              unit: "تومان",  keys: ["ksm"] },
+    { id: "tfuel",     label: "تتا فیول",            unit: "تومان",  keys: ["tfuel"] },
+    { id: "rvn",       label: "رون‌کوین",            unit: "تومان",  keys: ["rvn"] },
+    { id: "sc",        label: "سیاکوین",             unit: "تومان",  keys: ["sc"] },
+    { id: "dcr",       label: "دیکرد",               unit: "تومان",  keys: ["dcr"] },
+    { id: "nano",      label: "نانو",                unit: "تومان",  keys: ["nano"] },
+    { id: "lsk",       label: "لیسک",                unit: "تومان",  keys: ["lsk"] },
+    { id: "stx",       label: "استکس",               unit: "تومان",  keys: ["stx"] },
+    { id: "iost",      label: "آیوست",               unit: "تومان",  keys: ["iost"] },
+    { id: "celr",      label: "سلر نتورک",           unit: "تومان",  keys: ["celr"] },
+    { id: "storj",     label: "استورج",              unit: "تومان",  keys: ["storj"] },
+    { id: "ankr",      label: "انکر",                unit: "تومان",  keys: ["ankr"] },
+    { id: "ocean",     label: "اوشن پروتکل",         unit: "تومان",  keys: ["ocean"] },
+    { id: "ren",       label: "رن",                  unit: "تومان",  keys: ["ren"] },
+    { id: "band",      label: "بندپروتکل",           unit: "تومان",  keys: ["band"] },
+    { id: "pax",       label: "پکس",                 unit: "تومان",  keys: ["pax"] },
+    { id: "busd",      label: "بایننس یو‌اس‌دی",    unit: "تومان",  keys: ["busd"] },
+    { id: "dai",       label: "دای",                 unit: "تومان",  keys: ["dai"] },
+    { id: "tusd",      label: "تراواو یو‌اس‌دی",    unit: "تومان",  keys: ["tusd"] },
+    { id: "ton",       label: "تانکوین (TON)",       unit: "تومان",  keys: ["ton"] },
+    { id: "pepe",      label: "پپه",                 unit: "تومان",  keys: ["pepe"] },
+    { id: "wbt",       label: "وایت‌بیت توکن",      unit: "تومان",  keys: ["wbt"] },
+  ];
+
+  const grid = document.getElementById('priceGrid');
+  const emptyState = document.getElementById('emptyState');
+  const statusBar = document.getElementById('statusBar');
+  const statusDot = document.getElementById('statusDot');
+  const searchInput = document.getElementById('searchInput');
+  const searchBar = document.getElementById('searchBar');
+
+  // ساخت کارت‌ها و سرتیترهای بخش
+  const cardEls = {};
+  let currentGrid = null;
+
+  WATCHLIST.forEach(function(item){
+    if (item.section) {
+      // سرتیتر بخش
+      const label = document.createElement('div');
+      label.className = 'section-label';
+      label.textContent = item.label;
+      label.dataset.sectionId = item.id;
+      grid.appendChild(label);
+      // گرید جدید برای این بخش
+      currentGrid = document.createElement('div');
+      currentGrid.className = 'grid';
+      currentGrid.dataset.sectionGrid = item.id;
+      grid.appendChild(currentGrid);
+      return;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.id = item.id;
+    card.dataset.label = item.label.toLowerCase();
+    card.innerHTML =
+      '<div class="card-top">' +
+        '<div class="card-name">' + item.label + '</div>' +
+        '<div class="card-badge badge-flat" data-role="badge">--</div>' +
+      '</div>' +
+      '<div class="card-price" data-role="price">—</div>' +
+      '<div class="card-unit">' + item.unit + '</div>';
+    (currentGrid || grid).appendChild(card);
+    cardEls[item.id] = card;
+  });
+
+  function formatNumber(n){
+    if (n === null || n === undefined || n === '' || isNaN(n)) return '—';
+    return Number(n).toLocaleString('en-US');
+  }
+
+  function getApiItem(data, watchItem){
+    for (var i = 0; i < watchItem.keys.length; i++){
+      var k = watchItem.keys[i];
+      if (data && Object.prototype.hasOwnProperty.call(data, k) && data[k]) {
+        return data[k];
+      }
+    }
+    return null;
+  }
+
+  function updateCard(watchItem, apiItem){
+    const card = cardEls[watchItem.id];
+    if (!card) return;
+    const priceEl = card.querySelector('[data-role="price"]');
+    const badgeEl = card.querySelector('[data-role="badge"]');
+
+    const price = apiItem ? apiItem.value : null;
+    // پاسخ نوسان گاهی درصد تغییر را change_pct و گاهی change نام‌گذاری می‌کند؛ هر دو را پشتیبانی می‌کنیم.
+    const changePercent = apiItem
+      ? (apiItem.change_pct !== undefined ? apiItem.change_pct : apiItem.change)
+      : null;
+
+    priceEl.textContent = formatNumber(price);
+
+    if (changePercent === null || changePercent === undefined || changePercent === '' || isNaN(changePercent)) {
+      badgeEl.className = 'card-badge badge-flat';
+      badgeEl.textContent = '--';
+    } else {
+      const cp = Number(changePercent);
+      if (cp > 0) {
+        badgeEl.className = 'card-badge badge-up';
+        badgeEl.textContent = '+' + cp.toFixed(2) + '%';
+      } else if (cp < 0) {
+        badgeEl.className = 'card-badge badge-down';
+        badgeEl.textContent = cp.toFixed(2) + '%';
+      } else {
+        badgeEl.className = 'card-badge badge-flat';
+        badgeEl.textContent = '0.00%';
+      }
+    }
+  }
+
+  async function fetchWithTimeout(url, ms){
+    const controller = new AbortController();
+    const timer = setTimeout(function(){ controller.abort(); }, ms);
+    try {
+      const res = await fetch(url, { cache: 'no-store', signal: controller.signal });
+      return res;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async function fetchPrices(){
+    const errors = [];
+
+    for (let i = 0; i < CORS_PROXIES.length; i++){
+      const proxyUrl = CORS_PROXIES[i](NAVASAN_URL);
+      try {
+        const res = await fetchWithTimeout(proxyUrl, PROXY_TIMEOUT_MS);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+
+        // برخی APIها حتی هنگام خطا (کلید نامعتبر، اتمام سهمیه) با status 200 جواب می‌دهند
+        // و خطا را داخل خود JSON می‌گذارند؛ این حالت را هم جدا تشخیص می‌دهیم.
+        if (data && data.error) {
+          throw new Error('API error: ' + data.error);
+        }
+
+        // پاسخ نوسان یک آبجکت تخت است، مثل: { usd: {value:.., change:..}, btc: {...}, ... }
+        WATCHLIST.forEach(function(watchItem){
+          if (watchItem.section) return; // سرتیترها را رد کن
+          const apiItem = getApiItem(data, watchItem);
+          updateCard(watchItem, apiItem);
+        });
+
+        statusBar.textContent = 'به‌روزرسانی شد · ' + new Date().toLocaleTimeString('fa-IR');
+        statusDot.classList.add('live');
+        return; // موفق شد، نیازی به امتحان پروکسی بعدی نیست
+      } catch (err) {
+        errors.push((err && err.name === 'AbortError' ? 'timeout' : err.message));
+        console.error('Proxy #' + (i + 1) + ' failed:', err);
+        // و حلقه به پروکسی بعدی می‌رود
+      }
+    }
+
+    // اگر همه پروکسی‌ها ناموفق بودند
+    statusBar.textContent = 'خطا در اتصال (همه روش‌ها ناموفق) — در حال تلاش مجدد...';
+    statusDot.classList.remove('live');
+    console.error('All CORS proxies failed:', errors.join(' | '));
+  }
+
+  function startPolling(){
+    fetchPrices();
+    setInterval(fetchPrices, REFRESH_INTERVAL_MS);
+  }
+
+  startPolling();
+
+  // ====== فیلتر جست‌وجو ======
+  searchInput.addEventListener('input', function(){
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    Object.keys(cardEls).forEach(function(id){
+      const card = cardEls[id];
+      const matches = query === '' || card.dataset.label.indexOf(query) !== -1;
+      card.classList.toggle('hidden', !matches);
+      if (matches) visibleCount++;
+    });
+
+    // مخفی/نمایش سرتیترهای بخش در صورت خالی بودن تمام کارت‌های آن بخش
+    const sectionGrids = document.querySelectorAll('[data-section-grid]');
+    sectionGrids.forEach(function(sGrid){
+      const sectionId = sGrid.dataset.sectionGrid;
+      const hasVisible = sGrid.querySelector('.card:not(.hidden)');
+      const labelEl = document.querySelector('[data-section-id="' + sectionId + '"]');
+      if (labelEl) labelEl.style.display = hasVisible ? '' : 'none';
+      sGrid.style.display = hasVisible ? '' : 'none';
+    });
+
+    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+  });
+
+  searchBar.addEventListener('click', function(){
+    searchInput.focus();
+  });
+
+  searchInput.addEventListener('focus', function(){
+    searchBar.classList.add('focused');
+  });
+  searchInput.addEventListener('blur', function(){
+    searchBar.classList.remove('focused');
+  });
+
+})();
+</script>
+
+</body>
+</html>
